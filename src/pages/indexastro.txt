@@ -1,0 +1,88 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import BlogPostPreview from "../components/BlogPostPreview.astro";
+
+let title = "Example Blog";
+let description = "The perfect starter for your perfect blog.";
+import { Client } from '@notionhq/client'
+
+// Init client
+const notion = new Client({
+  auth: import.meta.env.NOTION_TOKEN,
+})
+
+const database_id = import.meta.env.NOTION_DATABASE_ID
+
+async function getVideos() {
+  const payload = {
+    path: `databases/${database_id}/query`,
+    method: 'POST',
+  }  
+
+  const { results } = await notion.request(payload)
+
+  const videos = results.map((page) => {
+    return {
+      id: page.id,
+      title: page.properties.Name.title[0].text.content,
+      date: page.properties.Date.date.start,
+      tags: page.properties.Tags.rich_text[0].text.content,
+      description: page.properties.Description.rich_text[0].text.content,
+    }
+  })
+
+  return videos
+}
+
+
+// Use Astro.glob to fetch all post with associated frontmatter
+// const unsortedPosts = await Astro.glob("./posts/*.md");
+// const posts = unsortedPosts.sort(function (a, b) {
+// 	return (
+// 		new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()
+// 	);
+// });
+
+
+getVideos()
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<Header />
+		<div class="wrapper">
+			<main class="content ">
+				<section class="intro">
+					<h1>{title}</h1>
+					<p>{description}</p>
+				</section>
+				<section aria-label="Blog post list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4 md:p-0 min-h-[50%] justify-items-center  md:mt-12 md:mx-12">
+					<!-- {posts.map(({ url, frontmatter }) => (
+						<BlogPostPreview
+						title={frontmatter.title}
+						heroImage={frontmatter.heroImage}
+							description={frontmatter.description}
+							publishDate={frontmatter.publishDate}
+							url={url}
+						/>
+					))} -->
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
+
+<style>
+ 
+
+	h1 {
+		text-align: center;
+		font-size: 2.5rem;
+		font-weight: 700;
+	}
+</style>
