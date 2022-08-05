@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: "Hello static content! 6 github"
-description: "Bring your markdown, github we'll handle the rest"
+title: "Hello static content! 6"
+description: "Bring your markdown, we'll handle the rest"
 publishDate: "11 Jul 2022"
 heroImage:
   src: "/assets/blog/introducing-astro.jpg"
