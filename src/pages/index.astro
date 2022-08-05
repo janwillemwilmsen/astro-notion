@@ -2,9 +2,10 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
+import Footer from "../components/Footer.astro"
 
-let title = "Example Blog";
-let description = "The perfect starter for your perfect blog.";
+let title = "I like working with Playwright...";
+let description = "Scrape websites, create screenshots, automate and program it to do stuff. Thought it would be a nice idea to share some of the code I use.... ";
 
 // Use Astro.glob to fetch all post with associated frontmatter
 const unsortedPosts = await Astro.glob("./posts/*.md");
@@ -20,15 +21,28 @@ const posts = unsortedPosts.sort(function (a, b) {
 		<BaseHead title={title} description={description} />
 	</head>
 
-	<body>
+	<body class="bg-gray-900 ">
 		<Header />
 		<div class="wrapper">
 			<main class="content ">
-				<section class="intro">
-					<h1>{title}</h1>
-					<p>{description}</p>
+				<section class="w-11/12 px-4 py-4 mx-auto mt-20 mb-8 border border-gray-400 rounded-md md:max-w-6xl bg-gradient-to-r from-gray-800 intro border-opacity-20">
+					<h2 class="font-bold ">{title}</h2>
+
+
+					<div class="flex flex-row">
+						<p class="w-4/6 mt-4">{description}</p>
+						
+						<a target="_blank" href="https://playwright.dev" class="mx-auto -mt-32" title="Go to Playwright.dev website">
+							<img src="https://playwright.dev/img/playwright-logo.svg" alt="" height="150" width="150" alt="Go to Playwright.dev website">
+						</a>
+
+					</div>
+				
+				
+				
 				</section>
-				<section aria-label="Blog post list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4 md:p-0 min-h-[50%] justify-items-center  md:mt-12 md:mx-12">
+				<!-- <section aria-label="Blog post list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4 md:p-0 min-h-[50%] justify-items-center  md:mt-12 md:mx-12"> -->
+					<section aria-label="Blog post list" class="flex flex-row flex-wrap justify-center mx-auto text-black max-w-7xl justify-items-center">
 					{posts.map(({ url, frontmatter }) => (
 						<BlogPostPreview
 						title={frontmatter.title}
@@ -41,15 +55,34 @@ const posts = unsortedPosts.sort(function (a, b) {
 				</section>
 			</main>
 		</div>
+
+		<Footer/>
+
 	</body>
 </html>
 
 <style>
- 
+	
 
-	h1 {
-		text-align: center;
-		font-size: 2.5rem;
-		font-weight: 700;
-	}
+
+ 
+/* inter-600 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/inter-v12-latin-600.eot'); /* IE9 Compat Modes */
+  src: local("Helvetica Neue Bold"),
+       local("HelveticaNeue-Bold"),
+       url('../fonts/inter-v12-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/inter-v12-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/inter-v12-latin-600.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/inter-v12-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/inter-v12-latin-600.svg#Inter') format('svg'); /* Legacy iOS */
+font-display: swap;
+}
+
+body {color: white;}
+	.intro {font-family: 'Inter', sans-serif;
+} 
 </style>

@@ -1,4 +1,4 @@
-<header class="wrapper">
+<header class="border-b border-gray-600 wrapper">
 	<!-- <nav>
 		<a href="/">
 			 
@@ -7,26 +7,54 @@
 		</a>
 	</nav> -->
 
-	<div class="bg-indigo-900 py-6 md:py-12 w-full">
-		<div class="container px-4 mx-auto">
+	<div class="w-11/12 py-6 mx-auto bg-ddd-900 md:max-w-6xl md:py-12">
+		<div class="px-4 mx-auto ">
 	
-		  <div class="text-center max-w-2xl mx-auto">
-			<h1 class="text-3xl md:text-4xl font-extrabold mb-2 text-indigo-100">
-	
-				<a href="/">
-				  Programmable browser.com
-				</a>
-				
-	
+		  <div class="flex flex-col md:flex-row ">
+			<h1 class="mb-2 md:w-1/2">
+				<div class='text-xl font-semibold text-gray-200 '>
+					<a href="/">
+						Programmable browser.com
+						<!-- <span class=" opacity-80">the headless browser</span> -->
+					</a>
+				</div>
 			</h1>
-			<div class='    '>Snippets and code to run playwright, the headless browser
+			
+			<div class="text-center md:w-1/2 md:text-right">
+				
+				<a href="/" id="maintitle" class="italic text-gray-400 text-md">
+					Snippets and code to run Playwright
+					</a>
+				</div>
+					
 	
-			</div>
 			</div>
 		  </div>
 		  </div>
 </header>
 
 <style>
+
+	/* inter-600 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/inter-v12-latin-600.eot'); /* IE9 Compat Modes */
+  src: local("Helvetica Neue Bold"),
+       local("HelveticaNeue-Bold"),
+       url('../fonts/inter-v12-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/inter-v12-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/inter-v12-latin-600.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/inter-v12-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/inter-v12-latin-600.svg#Inter') format('svg'); /* Legacy iOS */
+font-display: swap;
+}
  
+	#maintitle {
+		font-family: 'Inter', sans-serif;
+
+	}
+
+
 </style>

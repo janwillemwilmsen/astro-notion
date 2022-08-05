@@ -4,7 +4,7 @@ title: 'How to loop through multiple pages with Playwright 2'
 description: 'Test and crawl through multiple pages. Use arry of urls to loop and rerun the script. Explanation.'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "/assets/blog/introducing-astro.jpg"
+  src: "https://source.unsplash.com/gySMaocSdqs/840x420"
   alt: "Space shuttle leaving curved trail in the sky"
 ---
 

@@ -1,0 +1,40 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import BlogPostPreview from "../components/BlogPostPreview.astro";
+
+let title = "About";
+let description = "Why??";
+
+// Use Astro.glob to fetch all post with associated frontmatter
+const unsortedPosts = await Astro.glob("./posts/*.md");
+const posts = unsortedPosts.sort(function (a, b) {
+	return (
+		new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()
+	);
+});
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body class="bg-gradient-to-b from-indigo-500">
+		<Header />
+		<div class="wrapper">
+			<main class="content ">
+				<section class="intro">
+					<h1>{title}</h1>
+					<p class="mx-auto text-center w-72">{description}</p>
+				</section>
+				
+
+				<div class="h-screen max-w-prose"> P</div>
+
+
+			</main>
+		</div>
+	</body>
+</html>
+ 

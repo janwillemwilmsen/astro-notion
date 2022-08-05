@@ -13,24 +13,24 @@ export interface Props {
 const {heroImage, title, description, publishDate, url } = Astro.props as Props;
 ---
 
-<article class="post-preview w-72 ">
-	
-	<header>
-		{heroImage && (
-			<img
+<article class="font-semibold text-white post-preview w-72">
+ 
+		<header class="mt-4 mr-4 bg-indigo-900 rounded-md ">
+			{heroImage && (
+				<img
 				class=" rounded-t-md"
-				width=""
-				height="120"
-				loading="lazy"
+				width="280"
+				height="140"
 				src={heroImage.src}
 				alt={heroImage.alt}
-			/>
-		)}
-		<time>{publishDate}</time>
-		<a href={url}><h1 class="title">{title}</h1></a>
+				/>
+				)}
+				 <!-- loading="lazy" -->
+		<!-- <time>{publishDate}</time> -->
+		<a href={url}><h1 class="p-4 title">{title}</h1></a>
 	</header>
-
-	<p>{description}</p>
+ 
+	<!-- <p>{description}</p> -->
 	<!-- <a href={url}>Read more</a> -->
 
  
