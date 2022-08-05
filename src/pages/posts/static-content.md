@@ -1,7 +1,7 @@
 ---
 id: 200
 layout: "../../layouts/BlogPost.astro"
-title: "Hello static content! 6 Hello static content! 6 Hello static content! 6 Hello static content! 6"
+title: "Hello static content! 6"
 description: "Bring your markdown, we'll handle the rest"
 publishDate: "11 Jul 2022"
 heroImage:
