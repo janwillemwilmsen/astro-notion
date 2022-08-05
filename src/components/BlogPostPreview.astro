@@ -9,53 +9,35 @@ export interface Props {
 			alt: string;
 		};
 }
- 
+
+import { Img } from "astro-imagetools/components";
+
 const {heroImage, title, description, publishDate, url } = Astro.props as Props;
 ---
 
-<article class="font-semibold text-white post-preview w-72">
+<article class="flex flex-col font-semibold text-white w-72">
  
-		<header class="mt-4 mr-4 bg-indigo-900 rounded-md ">
+		<header class="w-64 mt-8 mr-4">
 			{heroImage && (
-				<img
-				class=" rounded-t-md"
-				width="280"
-				height="140"
+				<Img
+ 				width={256}
+				height={128}
 				src={heroImage.src}
 				alt={heroImage.alt}
+				attributes={{ img: { class: "z-0 mx-auto grayscale" } }}
+				layout="fill"
+				loading="auto"
 				/>
 				)}
-				 <!-- loading="lazy" -->
-		<!-- <time>{publishDate}</time> -->
-		<a href={url}><h1 class="p-4 title">{title}</h1></a>
+				
+			 
+		
 	</header>
  
-	<!-- <p>{description}</p> -->
-	<!-- <a href={url}>Read more</a> -->
+	<div class="flex-1 w-64 -mt-2 border-b border-l border-r border-gray-600 rounded-b-md">
+		<a class="line-clamp-3" href={url}><span class="z-0 block w-64 h-24 p-4 pt-5 line-clamp-3 ">{title}</span></a>
+	</div>
+	
 
  
 </article>
-<!-- 
-<style>
-	.post-preview {
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 4px solid var(--theme-divider);
-	}
-
-	.title,
-	time {
-		margin: 0;
-	}
-
-	time {
-		font-size: 1.25rem;
-		color: var(--theme-text-lighter);
-	}
-
-	.title {
-		font-size: 2.25rem;
-		font-weight: 700;
-		color: var(--theme-text);
-	}
-</style> -->

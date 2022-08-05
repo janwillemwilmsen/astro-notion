@@ -1,0 +1,24 @@
+---
+// const canonicalURL = new URL(Astro.url.pathname, );
+// const canonicalURL = new URL(Astro.site);
+// const canonicalURL = new URL(Astro.url.pathname, 'https://github.com');
+const canonicalURL = (Astro.url.pathname);
+
+const ghUrl = 'https://github.com/janwillemwilmsen/astro-notion/blob/main/src/pages' + canonicalURL + '.md'
+
+// const canonicalURL = new URL(Astro.site);
+
+---
+
+<!-- https://github.com/janwillemwilmsen/astro-notion/blob/main/src/pages/posts/getting-started-with-playwright.md -->
+
+<div class="w-full h-16 text-black bg-white">
+
+    <div>
+       <a href={ghUrl}>edit</a>
+
+    </div>
+
+
+
+</div>

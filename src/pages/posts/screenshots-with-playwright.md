@@ -1,4 +1,5 @@
 ---
+id: 3
 layout: "../../layouts/BlogPost.astro"
 relatedurl:
 retlatedurltitle:
@@ -6,7 +7,6 @@ prevurl:
 prevurltitle: 
 nexturl: 
 nexturltitle: 
-id: 1
 title: 'Create screenshots with PW 5'
 description: 'Install and run a test script.'
 heroImage:

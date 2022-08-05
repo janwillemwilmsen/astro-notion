@@ -2,6 +2,9 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { Img } from "astro-imagetools/components";
+
+import Gh from "../components/gh.astro";
 
 
 export interface Props {
@@ -63,25 +66,31 @@ for (let x = 0; x < postsNumber; x++) {
 				
 
 				
-								<header class="z-0 bg-indigo-900">
+								<header class="relative z-0 bg-gray-800">
 
 
 												 
-											<div class="w-full mx-auto bg-gray-900 ">
-												{heroImage && (
-													<img
-													class="z-0 mx-auto grayscale   md:aspect-[4/2]"
-													width="840"
-													height="420"
-													// loading="lazy"
-													src={heroImage.src}
-													alt={heroImage.alt}
-													/>
-													)}
-												
-												<div class="md:w-[840px] mx-auto bg-red-400">
-													<h1 class="z-40 max-w-4xl pt-8 pl-4 mx-auto text-4xl font-extrabold text-left text-white bg-indigo-900 pb-36">{title}</h1>
+											<div class="w-full mx-auto ">
+												<div class="z-0 flex bg-gray-900 h-96 justify-items-center">
+
+													{heroImage && (
+														<Img
+														attributes={{ img: { class: "z-0 mx-auto grayscale " } }}
+														width={840}
+														height={420}
+													    src={heroImage.src}
+														alt={heroImage.alt}
+														layout="fullWidth"
+														/>
+														)}
+											</div>
+											<div  class="absolute z-50 items-center justify-center w-full mx-auto -mt-40 bg-gray-900 bg-opacity-50">
+
+												<div class="mx-auto ml-5 ">
+													<h1 class="z-40 h-10 mx-auto my-16 text-xl font-extrabold text-center text-white md:text-5xl -800 rounded-b-md">{title}
+													</h1>
 												</div>	
+											</div>
 												
 											</div>		
 												
@@ -90,12 +99,10 @@ for (let x = 0; x < postsNumber; x++) {
 											
 											
 											<main>
-									<div class="z-50 p-4 mx-auto prose text-white bg-gray-800 border-l border-gray-200 -mt-28 border-opacity-5 lg:prose-xl">
+									<div class="z-50 p-4 mx-auto prose prose-invert bg-800 border-opacity-5 lg:prose-xl">
 
 									
-												<!-- <time>{publishDate}</time> -->
-
-												 
+											 
 													<slot></slot>
 
 											 
@@ -111,14 +118,17 @@ for (let x = 0; x < postsNumber; x++) {
 														Previous: <a class="previous" href={prevUrl}>{prevTitle}</a>
 														</p>
 													}
-												 
 
-									</div>
-								</main>
 
-							</article>
-							
-						</div>
+
+
+</div>
+</main>
+
+</article>
+
+</div>
+<Gh/>
 
 		
 	
@@ -144,8 +154,4 @@ for (let x = 0; x < postsNumber; x++) {
 
 <style>
  
-	.title {
-		font-size: 2.25rem;
-		font-weight: 700;
-	}
 </style>

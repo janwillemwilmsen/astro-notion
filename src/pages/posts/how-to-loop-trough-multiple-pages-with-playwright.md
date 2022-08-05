@@ -1,4 +1,5 @@
 ---
+id: 6
 layout: "../../layouts/BlogPost.astro"
 title: 'How to loop through multiple pages with Playwright 2'
 description: 'Test and crawl through multiple pages. Use arry of urls to loop and rerun the script. Explanation.'

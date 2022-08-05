@@ -1,0 +1,13 @@
+/* inter-600 - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: local("Helvetica Neue Bold"),
+       local("HelveticaNeue-Bold"),
+       url('../fonts/inter-v12-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/inter-v12-latin-600.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/inter-v12-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/inter-v12-latin-600.svg#Inter') format('svg'); /* Legacy iOS */
+font-display: swap;
+}

@@ -1,6 +1,7 @@
 ---
+id: 5
 layout: "../../layouts/BlogPost.astro"
-title: 'Getting started with playwright 3'
+title: 'Getting started with playwright 3 Getting started with playwright 3'
 description: 'Install and run a test script.'
 publishDate: "11 Jul 2022"
 heroImage:

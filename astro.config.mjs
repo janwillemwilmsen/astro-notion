@@ -10,6 +10,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [astroImageTools, sitemap(), preact(), tailwind(), serviceWorker({ enableInDevelopment: false }), robotsTxt()],
-    site: `https://astro-notion-xi.vercel.app`
+    integrations: [astroImageTools, sitemap(), preact(), tailwind(), serviceWorker({ enableInDevelopment: true }), robotsTxt()],
+    site: `https://programmablebrowser.com`
+        // site: `http://localhost:3000`
 });
