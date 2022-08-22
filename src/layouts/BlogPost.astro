@@ -25,7 +25,8 @@ let allPosts = await Astro.glob('../pages/posts/**/*.md');
 allPosts = allPosts
 	.filter(post => !post.frontmatter.draft)
 	.sort((a, b) =>
-		new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
+		// new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
+		(b.frontmatter.id).valueOf() - (a.frontmatter.id).valueOf()
 	);
 let postsNumber = allPosts.length;
 const thisUrl = new URL(Astro.request.url);
@@ -75,7 +76,7 @@ for (let x = 0; x < postsNumber; x++) {
 
 													{heroImage && (
 														<Img
-														attributes={{ img: { class: "z-0 mx-auto grayscale " } }}
+														attributes={{ img: { class: "z-0 mx-auto  " } }}
 														width={840}
 														height={420}
 													    src={heroImage.src}

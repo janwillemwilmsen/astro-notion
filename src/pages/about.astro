@@ -1,40 +1,37 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import BlogPostPreview from "../components/BlogPostPreview.astro";
+import Footer from "../components/Footer.astro";
 
-let title = "About";
-let description = "Why??";
+import Hello from "../components/Hello.astro";
 
-// Use Astro.glob to fetch all post with associated frontmatter
-const unsortedPosts = await Astro.glob("./posts/*.md");
-const posts = unsortedPosts.sort(function (a, b) {
-	return (
-		new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()
-	);
-});
+const title = 'hoi'
+const description = 'hoi'
 ---
 
-<html lang="en">
+<html>
 	<head>
 		<BaseHead title={title} description={description} />
 	</head>
 
-	<body class="bg-gradient-to-b from-indigo-500">
+	<body>
 		<Header />
-		<div class="wrapper">
-			<main class="content ">
-				<section class="intro">
-					<h1>{title}</h1>
-					<p class="mx-auto text-center w-72">{description}</p>
-				</section>
+		
+			<main>
 				
 
-				<div class="h-screen max-w-prose"> P</div>
-
-
+				<Hello name="Henk"></Hello>
+				<video width="320" height="240" controls>
+					<source src="/assets/video-playwright.webm" type="video/webm">
+				  </video>
+	 
 			</main>
-		</div>
+ 		 
+		<Footer/>
+
+
 	</body>
 </html>
- 
+
+
+
