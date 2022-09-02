@@ -1,6 +1,6 @@
 ---
-id: 11
-draft: true
+id: 7
+draft: false
 layout: "../../layouts/BlogPost.astro"
 title: "Web Vitals overlay"
 description: 'Get the Core Web Vitals data in Playwright'
@@ -10,7 +10,7 @@ heroImage:
   alt: "Add Core Web Vitals data on your screenschots in Playwright"
 ---
 
-Chrome Developer Tool lets you add an overlay with Core Web Vitals data directly on the webpage you are.
+Chrome Developer Tools lets you add an overlay with Core Web Vitals data directly on the webpage you are.
 You can turn this setting on with:
 - Inspect a page in Developer Tools
 - Type 'CTRL SHIFT P' (in Windows) 

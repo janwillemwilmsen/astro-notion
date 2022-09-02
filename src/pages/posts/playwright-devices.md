@@ -1,5 +1,5 @@
 ---
-id: 8
+id: 16
 layout: "../../layouts/BlogPost.astro"
 title: "Test websites in different devices with the Playwright device list"
 description: 'How to emulate different devices in Playwright '

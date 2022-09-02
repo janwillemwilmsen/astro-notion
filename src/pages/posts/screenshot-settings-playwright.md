@@ -1,6 +1,6 @@
 ---
-id: 25
-draft: true
+id: 19
+draft: false
 layout: "../../layouts/BlogPost.astro"
 title: "Screenshot settings in Playwright"
 description: 'Make screenshots: ✓ Full ✓ Clipped ✓ Transparant ✓ Scaled ✓ Base64 with Playwright.'

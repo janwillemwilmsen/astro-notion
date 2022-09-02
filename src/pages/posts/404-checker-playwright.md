@@ -1,5 +1,5 @@
 ---
-id: 12
+id: 3
 layout: "../../layouts/BlogPost.astro"
 title: "404 check, check for broken links and see redirect chain"
 description: 'How to get statuscodes for links on a page with Playwright'

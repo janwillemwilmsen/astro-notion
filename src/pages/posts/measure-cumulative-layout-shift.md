@@ -1,5 +1,5 @@
 ---
-id: 4
+id: 6
 layout: "../../layouts/BlogPost.astro"
 title: 'Measure Cumulative Layout Shift for multiple urls'
 description: 'How to calculate Cumulative Layout Shift for multiple urls, with Playwright.'

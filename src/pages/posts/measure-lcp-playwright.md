@@ -1,5 +1,5 @@
 ---
-id: 4
+id: 5
 layout: "../../layouts/BlogPost.astro"
 title: 'Measure LCP on multiple urls in Playwright'
 description: 'How to loop through multiple url, multiple times to calculate the LCP / Largest Contenful Paint'
