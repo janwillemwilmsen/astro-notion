@@ -1,6 +1,6 @@
 ---
 id: 22
-draft: true
+draft: false
 layout: "../../layouts/BlogPost.astro"
 title: "Playwright scraper"
 description: 'Make a webscraper with Playwright (might work with Puppeteer as well): ✓ SEO ✓ Headings ✓ Metatdata ✓ Links ✓ Images'
@@ -36,6 +36,301 @@ Install it with command 'npm i express' in the terminal.*
 create crawl.js. This script starts the webserver and scrapes data from urls.
 
 ```js
+// Go to localhost:1234/crawl?website=
+// Add the url you want to scrape as parameter
+// http://localhost:1234/crawl?website=https://www.essent.nl 
+// http://localhost:1234/crawl?website=http://books.toscrape.com/
+
+
+const playwright = require('playwright-chromium');
+const express = require('express');
+const app = express();
+const port = 1234;
+
+app.get("/crawl", async(req, res, next) => {
+    const website = req.query.website
+    if (!website) {
+        const err = new Error("required parameter missing");
+        err.status = 400
+        next(err);
+    }
+
+    try {
+
+        var startTime = new Date();
+        console.log('Start time', startTime)
+
+        const browser = await playwright.chromium.launch({ headless: true });
+        // const browser = await playwright.chromium.launch({ headless: false, slowMo: 250 });
+        const context = await browser.newContext({
+            // viewport: { width: 1240, height: 800 },
+            // deviceScaleFactor: 1,
+            // recordVideo: { dir: 'videos/' }
+        });
+        // await context.addCookies([...cookiesArr])
+
+        const registry = {};
+        let queue = [website]
+            // const addCount = 0
+        let addCount = 0
+
+        while (queue.length > 0) {
+            const url = queue[queue.length - 1];
+            console.log("Current url:", url)
+            const page = await context.newPage();
+            // const page = await browser.newPage();
+            await page.goto(url);
+
+            registry[url] = []
+
+            try {
+                addCount = addCount += 1
+                console.log('COUNTER', addCount)
+                registry[url].push({
+                    'url': url,
+                    'id': addCount
+                });
+                // return addCount;
+
+            } catch {
+
+            }
+
+            // registry[url] = await page.content()   // Does work, gets whole content of the page.
+
+            try {
+
+                const htmlTitle = await (await page.$('title').textContent().trim());
+                console.log('Htmltitle:', htmlTitle)
+                if (htmlTitle.length > 0)
+                    registry[url].push({
+                        'metaElement': 'html-seo-title',
+                        'pageTitle': htmlTitle || 'Empty page title'
+                    })
+                else {
+                    registry[url].push({
+                        'metaElement': 'html-seo-title',
+                        'pageTitle': 'Empty page title'
+                    })
+                }
+            } catch (error) {
+                console.log('html-title not found')
+                registry[url].push({
+                    'metaElement': 'html-seo-title',
+                    'pageTitle': 'No htmlTitle'
+                })
+            }
+
+            // Check Canonical url
+            try {
+                const canon = await page.$$("link[rel='canonical']")
+
+                for (i = 0; i < canon.length; i++) {
+
+                    const canonUrl = await canon[i].getAttribute('href')
+                    if (canonUrl) {
+                        console.log('canonical url:', canonUrl)
+                        registry[url].push({
+                            'metaElement': 'canonical-url',
+                            'id': i,
+                            'canonicalUrl': canonUrl
+                        })
+                    } else {
+                        console.log('canonical empty / not found')
+                        registry[url].push({
+                            'metaElement': 'canonical-url',
+                            'id': 'i',
+                            'canonicalUrl': 'there is no canonical url in the html - no canonurl'
+                        })
+                    }
+
+                }
+
+            } catch {
+                console.log('canonical not found')
+                registry[url].push({
+                    'metaElement': 'canonical-url',
+                    'canonicalUrl': 'there is no canonical url in the html'
+                })
+            }
+            // End Canonical url
+            ////////// start meta-data
+            try {
+
+                const metas = await page.$$('meta')
+                    // console.log('Metas:', metas)
+                for (i = 0; i < metas.length; i++) {
+
+                    const metaType = await metas[i].getAttribute('name');
+                    const metaContent = await metas[i].getAttribute('content');
+                    const metaProp = await metas[i].getAttribute('property');
+
+                    // console.log('metas:', metaType + ' ' + metaContent + ' ' + metaProp)
+
+                    registry[url].push({
+                        'metaElement': metaType,
+                        'id': i,
+                        'metaElementContent': metaContent,
+                        'metaElementProperty': metaProp
+                    })
+                }
+            } catch {
+                registry[url].push({
+                    'metaElement': 'No metaType',
+                    'id': 'i',
+                    'metaElementContent': 'NometaContent',
+                    'metaElementProperty': 'NometaProp'
+                })
+            }
+            // End Meta
+            // start Headings
+            try {
+                // registry[url] = await page.locator("H3").textContent(); // Works
+
+                const headIngs = await page.$$("h1, h2, h3, h4, h5, h6");
+                // headingDetails = []
+                // console.log('Headings:', headIngs)
+
+                for (let i = 0; i < headIngs.length; i++) {
+
+                    const elementType = await headIngs[i].evaluate(e => e.tagName);
+                    const typeElement = elementType.toLowerCase();
+                    const headingTxt = await headIngs[i].textContent();
+                    const headingTxtR = headingTxt.replace(/\s/g, ' ').trim()
+
+                    // console.log('Heading:', headingTxtR)
+
+                    registry[url].push({
+                        'metaElement': 'heading',
+                        'id': i,
+                        'type': typeElement,
+                        'headingTxt': headingTxtR,
+                    });
+                }
+            } catch {
+
+                registry[url] = 'No data'
+            }
+            // End Heading scrape
+            // Start scraping images
+            try {
+
+                const images = await page.$$('img')
+                    // console.log('Image:', images)
+                    // allImages = []
+
+                for (i = 0; i < images.length; i++) {
+                    let imageItemSrc = await images[i].getAttribute('src')
+                    let imageItemAlt = await images[i].getAttribute('alt')
+                    let imageItemLazy = await images[i].getAttribute('lazy')
+
+                    // let imageItemSrcTextContent = await images[i].getAttribute('src').textContent();
+
+                    // console.log('Img:', imageItemSrcTextContent)
+
+                    registry[url].push({
+                        'metaElement': 'image',
+                        'id': i,
+                        'imageSource': imageItemSrc,
+                        'imageAlt': imageItemAlt || 'No alt',
+                        'imageLazyLoaded': imageItemLazy || 'Not lazy loaded'
+                    })
+                }
+
+            } catch {
+                console.log('No images on the page')
+            }
+            // End image scrape
+            ///Start scraping link elements
+            try {
+
+                const urlHrefs = await page.$$('a, button');
+                // console.log('urlHrefs:', urlHrefs)
+                // linkDetails = []
+
+                for (let i = 0; i < urlHrefs.length; i++) {
+                    const elementType = await urlHrefs[i].evaluate(e => e.tagName);
+                    const typeElement = elementType.toLowerCase();
+                    const type = 'link'
+                    const href = await urlHrefs[i].getAttribute('href');
+                    const hreftarget = await urlHrefs[i].getAttribute('target');
+                    const hrefrel = await urlHrefs[i].getAttribute('rel');
+
+                    if (!href) {
+                        href2 = '/#'
+                    } else {
+                        href2 = href
+                    }
+                    const linkTxt = await urlHrefs[i].textContent();
+                    const linkTxtR = linkTxt.replace(/\s/g, ' ').trim()
+
+                    // console.log('LinkTxt:', linkTxt)
+
+                    registry[url].push({
+                        'metaElement': type,
+                        'type': typeElement,
+                        'id': i,
+                        'linkTxt': linkTxtR,
+                        'linkUrl': href2,
+                        'hrefTarget': hreftarget,
+                        'hrefRel': hrefrel
+                    });
+                }
+
+            } catch {
+                console.log('No links on the page')
+            }
+            // End scrape links
+
+            queue.pop();
+            console.log("queue lenght", queue.length)
+
+            const hrefs = await page.$$eval('a', (anchors) => anchors.map((link) => (link).href));
+            console.log('HREFS ', hrefs)
+                // console.log(typeof hrefs) // = object
+
+            //// Specify a filter. Use startsWith  (website) for scraping all urls found. 
+            //// Use ('https://domain.com/url/filter/folder') to filter on urls with specific path.
+            //// Scope the scraping to whole domain or specific folders:
+            const filteredHrefs = hrefs.filter(
+                    // (href) => href.startsWith('http://books.toscrape.com/catalogue/category/books/') && registry[href] === undefined && !href.endsWith('.pdf') && !href.includes('#') && !href.includes('?') && !href.includes('@') && !href.includes('tel:') && !href.includes('.ashx'))
+                    (href) => href.startsWith('https://../portfolio/') && registry[href] === undefined && !href.endsWith('.pdf') && !href.includes('#') && !href.includes('?') && !href.includes('@') && !href.includes('tel:') && !href.includes('.ashx'))
+                // (href) => href.startsWith('https://www..nl/') && registry[href] === undefined && !href.endsWith('.pdf') && !href.includes('#') && !href.includes('?') && !href.includes('@') && !href.includes('tel:') && !href.includes('.ashx'))
+                // (href) => href.startsWith('https://www..nl/') && registry[href] === undefined && !href.endsWith('.pdf') && !href.includes('#') && !href.includes('?') && !href.includes('@') && !href.includes('tel:'))
+                // (href) => href.startsWith('https://.com/') && registry[href] === undefined && !href.endsWith('.pdf') && !href.includes('#') && !href.includes('?'))
+                // (href) => href.startsWith('https://.app/portfolio/') && registry[href] === undefined && !href.endsWith('.pdf') && !href.includes('#') && !href.includes('?'))
+                // hrefs.every(str => str.startsWith(website)));
+
+
+
+            // (href) => href.every(str => str.startsWith(website)) && registry[href] === undefined)
+            const uniqueHrefs = [...new Set(filteredHrefs)]
+
+            queue.push(...uniqueHrefs)
+            queue = [...new Set(queue)];
+
+        }
+        var end = new Date() - startTime
+            // console.info('Execution time: %dms', end)
+        const secondsDuration = end / 1000
+
+        console.info(` Scraped: ${addCount} pages in ${secondsDuration} seconds....`)
+
+        return res.status(200).send(registry)
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).send("Something broke")
+    }
+
+    await page.close()
+    await browser.close()
+
+})
+
+app.listen(port, () => {
+    console.log(`app running on Port: ${port}`)
+})
 
 ```
 
