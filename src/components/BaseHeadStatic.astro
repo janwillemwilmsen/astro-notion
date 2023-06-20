@@ -1,16 +1,12 @@
 ---
-import "../styles/blog.css";
- 
-
 export interface Props {
 	title: string;
 	description: string;
 }
-
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description } = Astro.props;
 ---
+<!-- Meta Tags -->
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
@@ -21,6 +17,8 @@ const { title, description } = Astro.props;
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-TTFKSVL');</script>
+
+
 
 <link rel="shortcut icon" type="image/x-icon" href="/icons/favicon.ico">
  
