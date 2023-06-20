@@ -1,11 +1,11 @@
 ---
-id: 11
+id: 12
 layout: "../../layouts/BlogPost.astro"
 title: "Block image, scripts with ads or other resources"
-description: 'How to block to increase speed'
+description: 'How to block scripts and resources to increase speed of scraping and testing'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "/assets/blog/introducing-astro.jpg"
+  src: "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "Block resource Playwright"
 ---
 

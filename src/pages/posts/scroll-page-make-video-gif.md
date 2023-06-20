@@ -6,7 +6,7 @@ title: "Smooth scroll a page and make a video or animated gif"
 description: 'How to scroll to bottom of a page with smooth scroll. Create video/animated gif of the page.'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "/assets/blog/introducing-astro.jpg"
+  src: "https://images.unsplash.com/photo-1641141109253-6c1fc4f53e66?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "Smooth scrolling to end of page and exit Playwright function"
 ---
 
@@ -175,10 +175,63 @@ Animated gif of scrolling page made with Apify Actor:
 - The script does not optimize file size
 - The video generated with the script starts with blank page, you might need to edit/cut it from the video with video editing software
 - Apify has option to click on a link, it has a cookie accept option, it has the option to scroll a specific percentage of the page and it has some waiting options
+- On urls with animations the script has difficulties, don't know why but white elements appear during scrolling or the scrolling ends after a few seconds
 
 
 ## Some of the code that did not work ;-(
 
 ```js
+ // await page.addScriptTag({ url: 'https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js' });
+    // await page.addScriptTag({ url: 'https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js' });
 
+    await page.evaluate(async() => {
+        const selector = 'body'
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = `<div style='
+        background:red;
+        color:white;
+        z-index:9999999; 
+        width:400px; 
+        height:200px; 
+                            '>
+                                <a data-scroll href="#bazinga">Anchor Link</a>
+                            </div>`;
+
+        const currentDiv = document.querySelector(selector);
+        currentDiv.prepend(newDiv);
+    });
+
+
+    await page.evaluate(async() => {
+        const selector = 'body'
+        const newEndDiv = document.createElement("div");
+        newEndDiv.innerHTML = `<div style='
+                                    background:red;
+                                    color:white;
+                                    z-index:9999999; 
+                                    width:400px; 
+                                    height:200px; 
+                            '>
+                            <div id="bazinga">Bazinga!</div>
+
+                            </div>`;
+
+        const currentDiv = document.querySelector(selector);
+        currentDiv.append(newEndDiv);
+    });
+
+
+    // const watchDog = page.waitForFunction({
+    //     pageScroll() {
+    //         window.scrollBy(0, 1);
+    //         scrolldelay = setTimeout(pageScroll, 1);
+    //         // new Promise((scrolldelay) => setTimeout(scrolldelay, 1));
+    //         // scrolldelay = new Promise(resolve => setTimeout(resolve, pageScroll, 1));
+    //     }
+    // })
+    // await watchDog;
+
+        // await page.addInitScript(() => {
+    //     window.SmoothScrollOptions({ keyboardSupport: false, animationTime: 12400, stepSize: 100 })
+    // })
 ```

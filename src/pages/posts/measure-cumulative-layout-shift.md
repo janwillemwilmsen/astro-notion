@@ -5,7 +5,7 @@ title: 'Measure Cumulative Layout Shift for multiple urls'
 description: 'How to calculate Cumulative Layout Shift for multiple urls, with Playwright.'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "https://source.unsplash.com/gySMaocSdqs/"
+  src: "https://images.unsplash.com/photo-1541692641319-981cc79ee10a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "Cumulative Layout Shift loop through multiple urls, multiple times"
 ---
 

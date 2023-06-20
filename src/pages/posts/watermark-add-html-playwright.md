@@ -1,11 +1,11 @@
 ---
-id: 13
+id: 17
 layout: "../../layouts/BlogPost.astro"
 title: 'Add watermark on screenshots in Playwright'
 description: 'How to add html to a page and include it in screenshots'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "https://source.unsplash.com/gySMaocSdqs/"
+  src: "https://images.unsplash.com/photo-1591693898234-f2bba7c8beaa?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "Adding a watermark / html element in playwright script"
 ---
 

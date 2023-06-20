@@ -5,7 +5,7 @@ title: "Test websites in different devices with the Playwright device list"
 description: 'How to emulate different devices in Playwright '
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "/assets/blog/introducing-astro.jpg"
+  src: "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "Test your website in different devices with Playwright"
 ---
 

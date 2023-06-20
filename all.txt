@@ -1,0 +1,105 @@
+
+
+ARTICLES
+
+
+DONE
+1 Getting started with playwright
+2 Scrape a page with a 'load more' button
+3 404 check, check for broken links and see redirect chain
+4 How to loop through multiple pages with Playwright
+5 Measure LCP on multiple urls in Playwright
+6 Measure Cumulative Layout Shift for multiple urls
+7 Web Vitals overlay
+8 Screenshot long pages with lazy loaded images
+9 Get the entire HTML of a page with Playwright
+10
+11 Load external or inline scripts in Playwright (add-script..md)
+12 How to block scripts and resources to increase speed of scraping and testing
+13 Set cookies in Playwright to bypass cookiepopups
+14 Save a recording / save a video
+15 
+16 Test websites in different devices with the Playwright device list
+17 Add watermark on screenshots in Playwright
+18 Smooth scroll a page and make a video or animated gif
+19 Screenshot settings in Playwright
+20 Run Lighthouse in Playwright - test multiple urls
+21 
+22 Playwright scraper
+23 Run Axe single url with HTML report
+24 Run AXE Accessibility check in Playwright - multiple urls
+25 Cli
+26
+27
+28
+29
+30
+
+TO DO
+
+- 7ZIP 
+- Test JumboTron multiple pages - create export - multi device
+- Github Actions + visual regression
+- Multi page scraper
+- Whats possible with Chrome Developer protocol
+- Preview of searchResult all urls in a row
+- screenshot whole website / mobile desktop. + mini image. with layovers. 
+- dark normal mode
+- combat cloudinary cloudflare blocking
+- calculate css js usage/ per page codecoverage per url -- istanbul
+- convert png/jpg to webm - squoosh cli?
+- test a url in Google / Facebook Url test share page/ twitter test / whatapp --> setup Social Share tool Api
+- google serp preview - mobile desktop ipad. next to each other.
+- test ContentAccessibility.com --> setup A11Y Api Playwirght. 
+- pdf settings from energievergelijk.
+- test playwright live... on playwright.tech == edit script + run...
+- from har // login etc // .env    npx:https://www.youtube.com/watch?v=WHyQsX0w_5g
+- sentimeny based on list of words : https://codesandbox.io/s/xkmq6?file=/src/index.js
+-- sentiment puppeteer better https://www.youtube.com/watch?v=w6ECXzSJdnQ
+https://www.npmjs.com/package/lda-topic-model // https://morioh.com/p/4b8a4deaaedc
+https://github.com/seanmows/lda-topic-model
+http://naturalnode.github.io/natural/ 
+https://www.tensorflow.org/js
+https://www.npmjs.com/package/@agtabesh/keyword-extractor
+text processing: https://blanchardjulien.com/posts/compromise/
+https://wooorm.com/short-words/
+
+
+https://xetera.dev/converting-webp/
+
+--> scraper article : cut images cut headings cut links. 
+
+
+--> find script van die duitser die resources om en om weglaat. om te checken hoe hij webvitals telt.
+--> check sevenTest-oid, kijk welke elementen hij test. Losse tests beschikbaar?
+
+--> Setup die unlighthouse voor E.ON.
+
+- kapstok : Site migration guide
+    -> Visual + devices 
+    -> A11Y 
+    -> Links and redirects - 404 302's
+    -> Lighthouse (for seo, best practices, )
+    -> Manual : robots + sitemap.xml
+    -> Google scan urls.  
+- Kapstok : SEO scan
+    -> Lighthouse
+    -> Web Vitals
+    -> Web scraper (check content of Pagetitle + Canonical + Meta data + Headings + Lazy images + internal externa links.)
+
+??
+- Save logged in status + reuse
+- Best practices?
+- how read docs?
+- stackoverflow most used
+- google articles search pw scrape etc...
+
+-> puppeteer versie
+-> cloud run one.
+-> examples
+-> only chrome/ff/webkit
+
+-> apify / cheekly / headlessbrowser / question pupp pw stackoverflow
+
+
+https://github.com/trentmwillis/devtools-protocol-demos/tree/master/testing-demos

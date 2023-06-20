@@ -5,7 +5,7 @@ title: "404 check, check for broken links and see redirect chain"
 description: 'How to get statuscodes for links on a page with Playwright'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "/assets/blog/introducing-astro.jpg"
+  src: "https://images.unsplash.com/photo-1488272690691-2636704d6000?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "404 and redirects in Playwright"
 ---
 

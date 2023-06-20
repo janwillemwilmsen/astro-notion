@@ -6,7 +6,7 @@ title: "Load external or inline scripts in Playwright"
 description: 'How to add scripts in Playwright'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "/assets/blog/introducing-astro.jpg"
+  src: "https://images.unsplash.com/photo-1655557984979-ea96866210c3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: ""
 ---
 
@@ -47,11 +47,27 @@ Examples of the different ways to add and use a script in Playwright:
 with fake data
 
 ```js
-
 console.log(`Current directory: ${process.cwd()}`);
 // Get current working directory
 
 await page.addScriptTag({path: 'public\\js\\build\\report_bundle.js'});
-
-
 ```
+
+
+
+## Passing values with page.evaluate
+Not tested. Found it in Youtube video.
+
+```js
+await page.goto('https://google.com')
+
+const pizza = 'Hey Pizza'
+
+await page.evaluate((pizza) => {
+    console.log('Pizza here:', pizza)
+}, pizza);
+```
+
+
+#### Source:
+https://stackoverflow.com/questions/48207414/how-can-i-dynamically-inject-functions-to-evaluate-using-puppeteer

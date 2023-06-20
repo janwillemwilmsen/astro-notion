@@ -1,11 +1,11 @@
 ---
-id: 12
+id: 13
 layout: "../../layouts/BlogPost.astro"
 title: "Set cookies in Playwright to bypass cookiepopups"
 description: 'How to accept and bypass cookieconsent'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "/assets/blog/introducing-astro.jpg"
+  src: "https://images.unsplash.com/photo-1611945007935-925b09ddcf1b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "use Cookies to set consent in Playwright"
 ---
 
@@ -86,3 +86,13 @@ If you get errors like:<br>
 *UnhandledPromiseRejectionWarning: browserContext.addCookies: cookies[0].sameSite: expected one of (Strict|Lax|None)*
 
 Just change 'sameSite' to 'None'.
+
+## Alternative way to get cookies in Playwright
+The cookies used on the page should be logged to the console.
+
+```js
+const all_cookies = await context.cookies()
+console.log('The cookies of the page:', all_cookies)
+```
+
+

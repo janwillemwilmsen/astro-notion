@@ -5,7 +5,7 @@ title: 'Measure LCP on multiple urls in Playwright'
 description: 'How to loop through multiple url, multiple times to calculate the LCP / Largest Contenful Paint'
 publishDate: "11 Jul 2022"
 heroImage:
-  src: "https://source.unsplash.com/gySMaocSdqs/"
+  src: "https://images.unsplash.com/photo-1550002233-59d811d29b95?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=420&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTY4Mjc2OA&ixlib=rb-1.2.1&q=80&w=840"
   alt: "Space shuttle leaving curved trail in the sky 12"
 ---
 
